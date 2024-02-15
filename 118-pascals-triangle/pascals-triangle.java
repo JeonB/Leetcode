@@ -16,13 +16,14 @@ class Solution {
                 for(int i=3 ; i<numRows+1; i++){
                     
                     int n = pascal.get(i-2).size();
-                    List<Integer> prevPascal = new ArrayList<>();
-                    prevPascal.add(1);
+                    List<Integer> prevPascal = pascal.get(i-2);
+                    List<Integer> addPascal = new ArrayList<>();
+                    addPascal.add(1);
                     for(int j = 0 ;j< n-1;j++){
-                        prevPascal.add(pascal.get(i-2).get(j) + pascal.get(i-2).get(j+1));
+                        addPascal.add(prevPascal.get(j) + prevPascal.get(j+1));
                     }
-                    prevPascal.add(1);
-                    pascal.add(prevPascal);
+                    addPascal.add(1);
+                    pascal.add(addPascal);
                 }
                 // System.out.println(pascal.get(1).toString());
             }
