@@ -17,13 +17,13 @@ class Solution {
                     
                     int n = pascal.get(i-2).size();
                     List<Integer> prevPascal = pascal.get(i-2);
-                    List<Integer> addPascal = new ArrayList<>();
-                    addPascal.add(1);
+                    List<Integer> nextPascal = new ArrayList<>();
+                    nextPascal.add(1);
                     for(int j = 0 ;j< n-1;j++){
-                        addPascal.add(prevPascal.get(j) + prevPascal.get(j+1));
+                        nextPascal.add(prevPascal.get(j) + prevPascal.get(j+1));
                     }
-                    addPascal.add(1);
-                    pascal.add(addPascal);
+                    nextPascal.add(1);
+                    pascal.add(nextPascal);
                 }
                 // System.out.println(pascal.get(1).toString());
             }
