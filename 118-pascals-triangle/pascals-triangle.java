@@ -1,37 +1,16 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        // f(1) = 1 , f(2) = 2 
-        // 계산된 리스트를 계속 저장해야함
-        List<List<Integer>> pascal = new ArrayList<>();
-        if(numRows == 1){
-            pascal.add(new ArrayList<>(List.of(1)));
-            return pascal;
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i = 0 ; i < numRows; ++i){
+            Integer[] temp = new Integer[i+1];
+            Arrays.fill(temp, 1);
+            ans.add(Arrays.asList(temp));
         }
-        else{
-            pascal.add(new ArrayList<>(List.of(1)));
-            pascal.add(new ArrayList<>(List.of(1, 1)));
-
-            if(numRows>2){
-               
-                for(int i=3 ; i<numRows+1; i++){
-                    
-                    
-                    List<Integer> prevPascal = pascal.get(i-2);
-                    int n = prevPascal.size();
-
-                    List<Integer> nextPascal = new ArrayList<>();
-
-                    nextPascal.add(1);
-                    for(int j = 0 ;j< n-1;j++){
-                        nextPascal.add(prevPascal.get(j) + prevPascal.get(j+1));
-                    }
-                    nextPascal.add(1);
-
-                    pascal.add(nextPascal);
-                }
-                // System.out.println(pascal.get(1).toString());
-            }
-            return pascal;
-        }
+        
+        for(int i = 2; i< numRows; ++i)
+            for(int j = 1; j<ans.get(i).size() - 1 ; ++j)
+                ans.get(i).set(j, ans.get(i-1).get(j-1) + ans.get(i-1).get(j));
+        
+        return ans;
     }
 }
