@@ -4,15 +4,15 @@ class Solution {
         if(n < 3)
             return n;
 
-        int ans = 0;
-        int[] ways = new int[n+1];
-        ways[1] = 1;
-        ways[2] = 2; 
-
-        for(int i = 3 ; i<n+1;i++)
-            ways[i] = ways[i-1] + ways[i-2];
-
-        ans = ways[n];
-        return ans;
+        int one_step_before = 2;
+    int two_steps_before = 1;
+    int all_ways = 0;
+    
+    for(int i=2; i<n; i++){
+    	all_ways = one_step_before + two_steps_before;
+    	two_steps_before = one_step_before;
+        one_step_before = all_ways;
+    }
+    return all_ways;
     }
 }
