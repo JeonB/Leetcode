@@ -4,12 +4,12 @@ class Solution {
             return 1;
         char[] charArray = s.toCharArray();
         Arrays.sort(charArray);
-        // String sortedStr = new String(charArray);
+        String sortedStr = new String(charArray);
         int cnt = 1;
         int ans = 0;
         for(int i = 0 ; i<s.length()-1 ; i++){
             
-            if(charArray[i] == charArray[i+1])
+            if(sortedStr.charAt(i) == sortedStr.charAt(i+1))
                 cnt++;   
             else{
                 if(cnt % 2 == 0){
