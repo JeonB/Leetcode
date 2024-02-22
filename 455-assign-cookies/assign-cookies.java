@@ -1,6 +1,6 @@
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
-     if(s.length == 0) 
+        if(s.length == 0) 
             return 0;
 
         Arrays.sort(g);
@@ -13,8 +13,7 @@ class Solution {
                 ans++;
                 i++;
             }
-            
-            if(i >= g.length)
+            else if(i >= g.length)
                 return ans;
         }
 
