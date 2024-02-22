@@ -13,7 +13,8 @@ class Solution {
                 ans++;
                 i++;
             }
-            else if(i >= g.length)
+            
+            if(i >= g.length)
                 return ans;
         }
 
