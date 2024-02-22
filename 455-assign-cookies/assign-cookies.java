@@ -1,12 +1,13 @@
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
-        int ans = 0;
-        Arrays.sort(g);
+      
 
         if(s.length == 0) 
             return 0;
-                       
+
+        Arrays.sort(g);
         Arrays.sort(s);
+        int ans = 0;
         int i = 0;
 
 
