@@ -14,23 +14,18 @@ class Solution {
                 change[0]++;
             }
             else if(bill == 10){
-                if(change[0]>0){
-                    change[1]++;
-                    change[0]--;
-                }else{
-                    return false;
-                }
-            }else{
-                if(change[0]>0 && change[1]>0){
-                    change[0]--;
-                    change[1]--;
-                }
-                else if(change[0]>2){
-                    change[0]-=3;
-                }else{
-                    return false;
-                }
+                change[1]++;
+                change[0]--;
             }
+            else if(change[0]>0 && change[1]>0){
+                change[0]--;
+                change[1]--;
+            }
+            else{
+                change[0]-=3;
+            }
+            
+            if(change[0] < 0) return false;
         }
 
         return true;
