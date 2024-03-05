@@ -26,8 +26,12 @@ class Solution {
             ans = Math.max(ans, (wLast-wStart) * Math.min(height[wStart],height[wLast]));
             if(height[wLast] > height[wStart])
                 wStart++;
-            else if(height[wLast] <= height[wStart])
-                wLast--;    
+            else if(height[wLast] < height[wStart])
+                wLast--;
+            else{
+                wStart++;
+                wLast--;
+            }        
 
         }
         
