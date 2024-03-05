@@ -24,9 +24,9 @@ class Solution {
         
         while(wStart<wLast){
             ans = Math.max(ans, (wLast-wStart) * Math.min(height[wStart],height[wLast]));
-            if(height[wLast] >= height[wStart])
+            if(height[wLast] > height[wStart])
                 wStart++;
-            else if(height[wLast] < height[wStart])
+            else if(height[wLast] <= height[wStart])
                 wLast--;    
 
         }
