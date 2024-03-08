@@ -19,24 +19,26 @@ class Solution {
         // return count;
         if(nums.length == 1)
             return 1;
-        int element = 1;
-        ArrayList<Integer> list = new ArrayList<>();
-        Arrays.sort(nums);
+
         int ans = 0;
+        int element = 1;
+        Arrays.sort(nums);
+        ArrayList<Integer> list = new ArrayList<>();
         for(int i = 1 ; i<nums.length ; i++){
             
             if(nums[i] != nums[i - 1]){
                 list.add(element);
                 element = 1;
-            }else{
+            }else
                 element++;
-            }
         }
-        list.add(element);
 
+        
+        list.add(element);
         Collections.sort(list);
         if(list.size() == 1)
             return list.get(0);
+
         for(int i =list.size() - 1 ; i > 0 ; i--){
             ans+=list.get(i);
             if(list.get(i) > list.get(i-1)){
