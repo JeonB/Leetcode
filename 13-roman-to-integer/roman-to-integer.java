@@ -9,12 +9,11 @@ class Solution {
         roma.put('D', 500);
         roma.put('M', 1000);
 
-        int beforeNum = roma.get(s.charAt(0));
-        int ans = roma.get(s.charAt(0));
-        for(int i = 1 ; i< s.length() ; i++){
-            if(beforeNum <  roma.get(s.charAt(i)) ){
-                ans -= beforeNum;
-                ans += (roma.get(s.charAt(i)) - beforeNum);
+        int beforeNum = 0;
+        int ans = 0;
+        for(int i = s.length() - 1 ; i >= 0 ; i--){
+            if(beforeNum >  roma.get(s.charAt(i)) ){
+                ans -= roma.get(s.charAt(i));
             }else{
                 ans += roma.get(s.charAt(i));
             }
