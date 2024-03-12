@@ -1,26 +1,25 @@
 class Solution {
     public int romanToInt(String s) {
-        HashMap<Character, Integer> roma = new HashMap<>();
-        roma.put('I', 1);
-        roma.put('V', 5);
-        roma.put('X', 10);
-        roma.put('L', 50);
-        roma.put('C', 100);
-        roma.put('D', 500);
-        roma.put('M', 1000);
+ int answer = 0, number = 0, prev = 0;
 
-        int beforeNum = 0;
-        int ans = 0;
-        for(int i = s.length() - 1 ; i >= 0 ; i--){
-            if(beforeNum >  roma.get(s.charAt(i)) ){
-                ans -= roma.get(s.charAt(i));
-            }else{
-                ans += roma.get(s.charAt(i));
-            }
-       
-            beforeNum = roma.get(s.charAt(i));
+    for (int j = s.length() - 1; j >= 0; j--) {
+        switch (s.charAt(j)) {
+            case 'M' -> number = 1000;
+            case 'D' -> number = 500;
+            case 'C' -> number = 100;
+            case 'L' -> number = 50;
+            case 'X' -> number = 10;
+            case 'V' -> number = 5;
+            case 'I' -> number = 1;
         }
-
-        return ans;
+        if (number < prev) {
+            answer -= number;
+        }
+        else {
+            answer += number;
+        }
+        prev = number;
+    }
+    return answer;
     }
 }
