@@ -1,26 +1,27 @@
-import java.util.*;
 class Solution {
     public int romanToInt(String s) {
-       int ans = 0;
-       int prev = 0;
-       Map<Character,Integer> hash = new HashMap<>();
-        hash.put('I', 1);
-        hash.put('V', 5);
-        hash.put('X', 10);
-        hash.put('L', 50);
-        hash.put('C', 100);
-        hash.put('D', 500);
-        hash.put('M', 1000);
-        for(int i=s.length()-1; i>=0; i--){
-            int num = hash.get(s.charAt(i));
-            if(prev>num){
-                ans -= num;
+        HashMap<Character, Integer> roma = new HashMap<>();
+        roma.put('I', 1);
+        roma.put('V', 5);
+        roma.put('X', 10);
+        roma.put('L', 50);
+        roma.put('C', 100);
+        roma.put('D', 500);
+        roma.put('M', 1000);
+
+        int beforeNum = roma.get(s.charAt(0));
+        int ans = roma.get(s.charAt(0));
+        for(int i = 1 ; i< s.length() ; i++){
+            if(beforeNum <  roma.get(s.charAt(i)) ){
+                ans -= beforeNum;
+                ans += (roma.get(s.charAt(i)) - beforeNum);
+            }else{
+                ans += roma.get(s.charAt(i));
             }
-            else{
-                ans += num;
-            }
-            prev = num;
+       
+            beforeNum = roma.get(s.charAt(i));
         }
+
         return ans;
     }
 }
