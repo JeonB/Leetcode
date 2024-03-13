@@ -5,7 +5,6 @@ class Solution {
 
         int[][] subPalin = new int[s.length()][s.length()];
         int ans = s.length();
-        subPalin[s.length() - 1][s.length() - 1] = 1;
 
         for(int i = 0 ; i< s.length(); i++){
             subPalin[i][i] = 1;
@@ -20,9 +19,9 @@ class Solution {
             for(int len = 2 ; len < s.length() ; len++){
 
                 for(int i = 0 ; (i+len)< s.length() ; i++ ){
-                    if(s.charAt(i) == s.charAt(i+len)){
-                        subPalin[i][i+len] = subPalin[i+1][i+len-1];
-                        ans += subPalin[i][i+len]; // subPalin[1][1]
+                    if( subPalin[i+1][i+len-1] > 0 && s.charAt(i) == s.charAt(i+len)){
+                        subPalin[i][i+len] = 1;
+                        ans++; // subPalin[1][1]
                     }
                 }
                 
