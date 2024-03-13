@@ -1,15 +1,17 @@
 class Solution {
     public int countSubstrings(String s) {
+        if( s.length() < 2)
+            return 1;
+
         int[][] subPalin = new int[s.length()][s.length()];
-        int ans = 1;
+        int ans = s.length();
         subPalin[s.length() - 1][s.length() - 1] = 1;
 
-        for(int i = 0 ; i< s.length() - 1 ; i++){
+        for(int i = 0 ; i< s.length(); i++){
             subPalin[i][i] = 1;
-            ans+=1;
-            if(s.charAt(i)  == s.charAt(i+1)){
+            if(i < s.length() - 1 &&  s.charAt(i)  == s.charAt(i+1)){
                 subPalin[i][i + 1] = 1;
-                ans+=1;
+                ans++;
             }
         }
         
