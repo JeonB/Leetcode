@@ -11,7 +11,6 @@ var countSubarrays = function(nums, k) {
         while (freq == k) 
             if (nums[ii++] == m) --freq; 
         ans += ii; 
-        console.log(ans)
     }
     return ans; 
 };
