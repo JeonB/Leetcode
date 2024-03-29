@@ -4,13 +4,14 @@
  * @return {number}
  */
 var countSubarrays = function(nums, k) {
-    let m = Math.max(...nums); 
-    let ans = 0, ii = 0, freq = 0; 
-    for (let x of nums) {
-        if (x == m) ++freq; 
-        while (freq == k) 
-            if (nums[ii++] == m) --freq; 
-        ans += ii; 
+     let subarrays = 0, count = 0;
+    const max = Math.max(...nums);
+    for (let l = 0, r = 0; r < nums.length; r++) {
+        if (nums[r] === max) count++;
+        while (count == k) {
+            subarrays += nums.length - r;
+            if (nums[l++] === max) count--;
+        }
     }
-    return ans; 
+    return subarrays;
 };
