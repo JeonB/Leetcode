@@ -4,20 +4,24 @@
  * @return {number}
  */
 var subarraysWithKDistinct = function(nums, k) {
-
-    let res = 0, sz = nums.length;
-    let cnt = new Array(sz+1).fill(0);
-    for (let l = 0, m = 0, r = 0; r < sz; ++r) {
-        if (++cnt[nums[r]] === 1)
-            if (--k < 0) {
-                cnt[nums[m++]] = 0;
-                l = m;
-            }
-        if (k <= 0) {
-            while (cnt[nums[m]] > 1)
-                --cnt[nums[m++]];
-            res += m - l + 1;   
-        }
-    }    
-    return res;
+    return atMost(nums,k) - atMost(nums,k-1);
 };
+
+function atMost(nums, k){
+    let i = 0, res = 0;
+    const count = new Map();
+    for(let j = 0 ; j<nums.length ; ++j){
+       if (!count.has(nums[j]) || count.get(nums[j]) === 0) {
+            k--;
+        }
+        
+        count.set(nums[j], (count.get(nums[j]) || 0) + 1);
+        while(k<0){
+            count.set(nums[i],count.get(nums[i])-1);
+            if(count.get(nums[i]) === 0) k++;
+            i++;
+        }
+        res += j - i + 1;
+    }
+    return res;
+}
