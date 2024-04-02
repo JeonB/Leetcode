@@ -3,9 +3,15 @@
  * @return {number}
  */
 var lengthOfLastWord = function(s) {
-    let arr = s.trim().split(' ');
+    let nonspaceString = s.trim();
     let ans = 0;
     
-    ans = arr[arr.length-1].length;
+    for(let i = nonspaceString.length-1 ; i >= 0 ;i--){
+        if(nonspaceString.charAt(i).includes(' '))
+            return ans;
+        
+        ans++;
+    }
+
     return ans;
 };
