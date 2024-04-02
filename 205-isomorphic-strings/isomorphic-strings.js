@@ -4,8 +4,8 @@
  * @return {boolean}
  */
 var isIsomorphic = function(s, t) {
-    const map1 = [256];
-    const map2 = [256];
+    const map1 = [256].fill(0);
+    const map2 = [256].fill(0);
 
     for(let i = 0 ; i<s.length ; i++){
         if(map1[s.charAt(i)] !== map2[t.charAt(i)])
