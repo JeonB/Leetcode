@@ -7,11 +7,8 @@ var makeGood = function(s) {
     // 반복이 끝나는 조건은 더 이상 위와 같은 문자가 없을 때
     const stack = []
     for(let char of s){
-        if(stack.length > 0 && Math.abs(char.charCodeAt() - stack[stack.length-1].charCodeAt()) === 32){
-            stack.pop();
-        }else{
-            stack.push(char);
-        }
+        if(stack.length > 0 && char !== stack[stack.length-1] && char.toUpperCase()  === stack[stack.length-1].toUpperCase()) stack.pop();
+        else stack.push(char);
     }
     return stack.join("");
 };
