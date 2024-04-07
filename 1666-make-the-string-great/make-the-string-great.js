@@ -3,18 +3,16 @@
  * @return {string}
  */
 var makeGood = function(s) {
-     if(s.length<=1) return s
-    let arr=[]
-   for(let i=0;i<s.length;i++) {
-       let current=s[i];
-       if(arr.length>0) {
-           let lastChar=arr[arr.length-1];
-           if(lastChar!==current&&lastChar.toUpperCase()===current.toUpperCase()) {
-               arr.pop();
-               continue
-           }
-       }
-       arr.push(s[i])
-   }
-    return arr.join("")
+    // 문자열 s내에서  eE,Aa 같은 동일한 문자의 인접한 대소문자를 반복해서 지워나가야 함
+    // 반복이 끝나는 조건은 더 이상 위와 같은 문자가 없을 때
+    const stack = []
+    for(let char of s){
+        if(stack.length > 0 && Math.abs(char.charCodeAt() - stack[stack.length-1].charCodeAt()) === 32){
+            stack.pop();
+        }else{
+            stack.push(char);
+        }
+    }
+    return stack.join("");
 };
+
