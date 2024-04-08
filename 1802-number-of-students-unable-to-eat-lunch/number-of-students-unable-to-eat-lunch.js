@@ -4,17 +4,20 @@
  * @return {number}
  */
 var countStudents = function(students, sandwiches) {
-    let length = students.length 
-    while(length > 0){
-        if(students[0] === sandwiches[0]){
-            students.shift()
-            sandwiches.shift()
-            countStudents(students,sandwiches)
-        }else{
-            students.push(students.shift())
-        }
-        length--
-    }
+    let unableToEat = 0;
 
-    return students.length
+  while (students.length > 0 && unableToEat < students.length) {
+    if (sandwiches[0] === students[0]) {
+      sandwiches.shift();
+      students.shift();
+      unableToEat = 0
+    } else {
+      let shiftStudent = students.shift();
+      students.push(shiftStudent);
+      unableToEat++
+    }
+  }
+
+  return unableToEat;
+
 };
