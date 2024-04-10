@@ -3,32 +3,32 @@
  * @return {number}
  */
 var countPalindromicSubsequence = function(s) {
-        const c = 'abcdefghijklmnopqrstuvwxyz';
-        let a = 0, t = 0;
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        let answer = 0, temp = 0;
 
-        for (const x of c) {
-            const l = s.indexOf(x);
-            if (l === -1) {
+        for (const char of alphabet) {
+            const left = s.indexOf(char);
+            if (left === -1) {
                 continue;
             }
-            const r = s.lastIndexOf(x);
-            if (l >= r) {
+            const right = s.lastIndexOf(char);
+            if (left >= right) {
                 continue;
             }
 
-            const v = new Array(128).fill(false);
+            const validCheck = new Array(26).fill(false);
            
-            for (let i = l + 1; i < r; i++) {
-                if (!v[s.charCodeAt(i)]) {
-                    v[s.charCodeAt(i)] = true;
-                    t++;
-                    if (t === 26) {
+            for (let i = left + 1; i < right; i++) {
+                if (!validCheck[s.charCodeAt(i) - 97]) {
+                    validCheck[s.charCodeAt(i) - 97] = true;
+                    temp++;
+                    if (temp === 26) {
                         break;
                     }
                 }
             }
-            a += t;
-            t = 0;
+            answer += temp;
+            temp = 0;
         }
-        return a;
+        return answer;
 };
