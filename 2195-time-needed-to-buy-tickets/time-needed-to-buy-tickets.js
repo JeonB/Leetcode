@@ -5,20 +5,19 @@
  */
 var timeRequiredToBuy = function(tickets, k) {
   
-    let timeToBuyTicket = tickets[k];
-    let ans = 0;
-    
-    while(timeToBuyTicket > 0){
-        for(let i = 0; i< tickets.length ; i++){
-            if(tickets[i] > 0){
-                tickets[i]--;
-                ans++;
-            }
-            if(i === k && tickets[i] === 0)
-                break;
+    let timeToBuyTicket = 0;
+    let pointer = 0;
+    while(tickets[k] > 0){
+        if(tickets[pointer] > 0){
+            tickets[pointer] += -1;
+            timeToBuyTicket++;
         }
-        timeToBuyTicket--;
+        pointer++;
+        if(pointer > tickets.length){
+            pointer = 0;
+        }
+
     }
 
-    return ans;
+    return timeToBuyTicket;
 };
