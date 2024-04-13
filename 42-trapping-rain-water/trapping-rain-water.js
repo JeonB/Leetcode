@@ -3,28 +3,27 @@
  * @return {number}
  */
 var trap = function(height) {
-    let left =0, right = height.length - 1;
-    let maxLeft=0, maxRight=0;
-    let totalWater = 0;
+    let left =0,right = height.length - 1
+    let maxLeftHeight = 0, maxRightHeight = 0
+    let trappedWater = 0
 
     while(left < right){
-
         if(height[left] < height[right]){
-            if(height[left] >= maxLeft){
-                maxLeft = height[left];
+            if(height[left] < maxLeftHeight){
+                trappedWater += maxLeftHeight - height[left]
             }else{
-                totalWater += maxLeft - height[left];
+                maxLeftHeight = height[left]
             }
-            left++;
+            left++
         }else{
-            if(height[right] >= maxRight){
-                maxRight = height[right];
+            if(height[right] < maxRightHeight){
+                trappedWater += maxRightHeight - height[right]
             }else{
-                totalWater += maxRight - height[right];
+                maxRightHeight = height[right]
             }
-            right--;
+            right--
         }
-     
     }
-       return totalWater;
+
+    return trappedWater
 };
