@@ -14,17 +14,22 @@
  */
 var addOneRow = function(root, val, depth) {
 
-    if(depth === 0 || depth === 1){
-        let newRoot = new TreeNode(val);
-        newRoot.left = depth === 1 ? root : null;
-        newRoot.right = depth=== 0 ? root : null;
-        return newRoot
+  // traverse dfs style and stop once depth - 1 is reached
+    // At this node do node.left = new node and new node.left = node.left
+
+    let mockNode = new TreeNode(null, root, null)
+    const dfs = (node, currDepth) => {
+        if (currDepth === depth - 1) {
+            let newLeft = new TreeNode(val, node.left, null)
+            let newRight = new TreeNode(val, null, node.right)
+            node.left = newLeft
+            node.right = newRight
+            return node
+        }
+        node.left && dfs(node.left, currDepth + 1)
+        node.right && dfs(node.right, currDepth + 1)
+        return node
     }
-    
-    if(root!== null && depth > 1){
-           root.left = addOneRow(root.left, val, depth > 2 ? depth- 1 : 1)
-           root.right = addOneRow(root.right, val, depth > 2 ? depth - 1 : 0)
-    }
-    return root
-    
+    dfs(mockNode, 0)
+    return mockNode.left
 };
