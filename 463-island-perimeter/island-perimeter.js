@@ -17,9 +17,7 @@ var islandPerimeter = function(grid) {
                         sum -= 1   
                     if(i > 0 && grid[i-1][j] === 1)
                         sum -= 1
-                }
-                    
-                console.log(sum)                                                  
+                }                                                
         }
     }
     return sum
