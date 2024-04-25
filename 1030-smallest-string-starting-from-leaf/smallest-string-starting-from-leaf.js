@@ -13,20 +13,21 @@
 var smallestFromLeaf = function(root) {
     return dfs(root, "");
     
-    function dfs(node, path) {
-        if (!node) return "|"; // If the node is null, return a sentinel value
+    function dfs(node, currentPath) {
+        if (!node) return "감시값" 
         
-        // Append the current node's value to the path
-        let newPath = String.fromCharCode(97 + node.val) + path;
-        
-        // If the node is a leaf, return the constructed path
-        if (!node.left && !node.right) return newPath;
-        
-        // Recursively find the smallest path from the left and right subtrees
-        let leftPath = dfs(node.left, newPath);
-        let rightPath = dfs(node.right, newPath);
-        
+        const newPath = String.fromCharCode(97 + node.val) + currentPath 
+    
+        if (!node.left && !node.right) return newPath
+    
+        const leftPath = dfs(node.left, newPath)
+        const rightPath = dfs(node.right, newPath)
+    
         // Return the smaller path between left and right
-        return leftPath < rightPath ? leftPath : rightPath;
+        if (leftPath < rightPath) {
+            return leftPath
+        } else {
+            return rightPath
+        }
     }
-};
+}
