@@ -22,6 +22,6 @@ var evaluateTree = function(root) {
         } else if (node.val === 3) {
             return helper(node.left) && helper(node.right);
         }
-        return false;
+        return true;
     }
   
