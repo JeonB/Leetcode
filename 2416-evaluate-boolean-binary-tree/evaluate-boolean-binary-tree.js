@@ -11,17 +11,14 @@
  * @return {boolean}
  */
 var evaluateTree = function(root) {
-    return helper(root)
     
-};
- function helper(node) {
-        if (node.val === 0 || node.val === 1) {
-            return node.val === 1;
-        } else if (node.val === 2) {
-            return helper(node.left) || helper(node.right);
-        } else if (node.val === 3) {
-            return helper(node.left) && helper(node.right);
-        }
+    if(root.left === null && root.right === null){
+        if(root.val === 0) return false;
         return true;
     }
-  
+    const left = evaluateTree(root.left)
+    const right = evaluateTree(root.right)
+    
+    if(root.val === 2) return left || right
+    return left && right
+}
