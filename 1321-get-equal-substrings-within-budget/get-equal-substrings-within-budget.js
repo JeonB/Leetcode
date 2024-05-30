@@ -5,21 +5,18 @@
  * @return {number}
  */
 var equalSubstring = function(s, t, maxCost) {
-    let n = s.length;
-    let start = 0;
-    let currentCost = 0;
-    let maxLength = 0;
-
-    for (let end = 0; end < n; end++) {
-        currentCost += Math.abs(s.charCodeAt(end) - t.charCodeAt(end));
-
-        while (currentCost > maxCost) {
-            currentCost -= Math.abs(s.charCodeAt(start) - t.charCodeAt(start));
-            start++;
+    
+    let cost = 0
+    let start = 0
+    let maxSubStringLength = 0
+    for(let end = 0 ; end < s.length ; end++){
+        cost += Math.abs(s.charCodeAt(end) - t.charCodeAt(end))
+        while(maxCost < cost){
+            cost -= Math.abs(s.charCodeAt(start) - t.charCodeAt(start))
+            start++
         }
+        maxSubStringLength = Math.max(maxSubStringLength, end - start + 1)
+   }
 
-        maxLength = Math.max(maxLength, end - start + 1);
-    }
-
-    return maxLength;
+   return maxSubStringLength
 };
