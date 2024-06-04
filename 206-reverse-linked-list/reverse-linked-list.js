@@ -10,20 +10,13 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-   // Base case: if the list is empty or has only one node, return it
-    if (head === null || head.next === null) {
-        return head;
+    let prev = null;
+    let curr = head;
+    while (curr !== null) {
+        let nextTemp = curr.next; // Store the next node
+        curr.next = prev;         // Reverse the link
+        prev = curr;              // Move prev one step forward
+        curr = nextTemp;          // Move curr one step forward
     }
-
-    // Recursive case: reverse the rest of the list
-    let newHead = reverseList(head.next);
-
-    // Make the next node of the current node point to the current node
-    head.next.next = head;
-    // Set the next node of the current node to null
-    head.next = null;
-
-    // Return the new head of the reversed list
-    return newHead;
-    
+    return prev;  // prev will be the new head at the end of the loop
 };
