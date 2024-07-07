@@ -4,7 +4,6 @@ class Solution {
 
         while(numExchange <= numBottles){
             int exchangedBottles = numBottles/numExchange;
-            System.out.println(exchangedBottles);
             answer += exchangedBottles;
             numBottles = numBottles - numExchange * exchangedBottles + exchangedBottles;
         }
