@@ -31,6 +31,7 @@ class Trie {
 
         while (node) {
             const keys = Object.keys(node.children);
+            console.log(keys)
             if (keys.length !== 1 || node.isEndOfWord) {
                 break;
             }
@@ -42,7 +43,6 @@ class Trie {
 }
 
 function longestCommonPrefix(strs) {
-    if (strs.length === 0) return "";
 
     const trie = new Trie();
     for (const word of strs) {
